@@ -162,11 +162,14 @@ jobs:
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
-      if: env.status == 'success' && env.UPLOAD_RELEASE == 'true'
       with:
-        name: ${{ env.RELEASE_TAG }}
+        name: ${{ github.event.inputs.tag_name }}
+        tag_name: ${{ github.event.inputs.tag_name }}
         body_path: release.txt
         files: ./openwrt/bin/targets/*/*/*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
