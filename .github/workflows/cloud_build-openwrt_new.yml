@@ -1,4 +1,4 @@
-name: Build OpenWrt
+name: new Build OpenWrt
 
 on:
   repository_dispatch:
@@ -161,7 +161,7 @@ jobs:
 
 
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@V1
+      uses: softprops/action-gh-release@v1
       if: env.status == 'success' && env.UPLOAD_RELEASE == 'true'
       with:
         name: ${{ env.RELEASE_TAG }}
